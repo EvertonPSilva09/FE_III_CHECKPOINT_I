@@ -66,17 +66,16 @@ function App() {
 
   return (
     <div className="app">
-      <br />
-      <div className="tasks">
-      <h1 className="title">Cadastrar Tarefa</h1>
-        <div className="task">
-          <form onSubmit={addTask}>
+      <div className="container">
+        <div className="container_form">
+          <form className="form" onSubmit={addTask}>
+            <p className="title">Cadastrar Tarefa</p>
             <input
               required
               type="text"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
-              placeholder="Titulo da Tarefa"
+              placeholder="Titulo"
             />
             <br />
             <br />
@@ -86,7 +85,7 @@ function App() {
               value={category}
               onChange={(event) => setCategory(event.target.value)}
             >
-              <option value="">Selecione uma opção</option>
+              <option value="">Categoria</option>
               <option value="Atividade Física">Atividade Física</option>
               <option value="Trabalhar">Trabalhar</option>
               <option value="Estudar">Estudar</option>
@@ -104,31 +103,39 @@ function App() {
             />
             <br />
             <br />
-            <textarea
+            <input
               required
               value={description}
               onChange={(event) => setDescription(event.target.value)}
               placeholder="Descrição"
             />
-            <input type="submit" value={id ? "Salvar" : "Cadastrar"} />
+            <p className="save">
+              <input type="submit" value={id ? "Salvar" : "Nova tarefa"} />
+            </p>
           </form>
         </div>
       </div>
-      <div className="MyTasks">
-        <h1>Minhas tarefas</h1>
+      <div className="myTasks">
+        <div className="container_spans">
+          <h3 className="first-line">Minhas tarefas</h3>
+          <span>Total: {todoList.length} tarefas</span>
+        </div>
         {todoList.length > 0 ? (
-          <ul>
-            {todoList.map((item) => (
-              <li key={item.id}>
-                <p>{item.title}</p>
-                <p>{item.category}</p>
-                <p>{item.date}</p>
-                <p>{item.description}</p>
-                <button onClick={() => deleteTask(item.id)}>Apagar</button>
-                <button onClick={() => fillFields(item)}>Editar</button>
-              </li>
-            ))}
-          </ul>
+          <div className="container_tasks">
+            
+            <ul>
+              {todoList.map((item) => (
+                <li key={item.id}>
+                  <p>{item.title}</p>
+                  <p>{item.category}</p>
+                  <p>{item.date}</p>
+                  <p>{item.description}</p>
+                  <button onClick={() => deleteTask(item.id)}>Apagar</button>
+                  <button onClick={() => fillFields(item)}>Editar</button>
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : (
           <p>Nenhuma tarefa cadastrada</p>
         )}

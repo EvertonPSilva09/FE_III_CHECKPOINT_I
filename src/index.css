@@ -1,0 +1,99 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, Geneva, Tahoma, sans-serif;
+}
+
+
+
+.app {
+  height: 100vh;
+   display: flex;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  /* background-color: #102766; */
+}
+
+.container_form {
+  display: flex;
+  height: 100%;
+  background: #102766;
+}
+
+.myTasks{
+  /* background-color: #102766; */
+  width: 100%;
+  padding: 20px;
+}
+
+.container_spans {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.container_form, .save {
+  align-items: center;
+}
+
+.form{
+  background: #ffff;
+  height: 568px;
+  width: 343px;
+  margin: 0 30px;
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.save{
+  background-color: #E84118 ;
+  height: 52px;
+  margin-top: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+input,
+textarea,
+select {
+  text-align: center;
+  border-right: 0px;
+  border-left: 0px;
+  border-top: 0px;
+  margin-top: 40px;
+}
+
+select{
+  height: 40px;
+}
+
+input{
+  background-color:transparent;
+}
+
+input:last-child{
+  margin-top: 0px;
+  color: #ffff;
+  border: none;
+}
+
+ul {
+  list-style: none;
+  border-color: #C7C4C4;
+}
