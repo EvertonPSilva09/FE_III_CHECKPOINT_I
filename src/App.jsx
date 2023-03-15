@@ -9,6 +9,14 @@ function App() {
 
   const [todoList, setTodoList] = useState([]);
 
+  const converteData = (data) => {
+    const ano = data.slice(0, 4);
+    const mes = data.slice(5, 7);
+    const dia = data.slice(8, 10);
+    const formatada = dia + "/" + mes + "/" + ano;
+    return formatada;
+  };
+
   function addTask(event) {
     event.preventDefault();
 
@@ -62,6 +70,7 @@ function App() {
     setDate(item.date);
     setDescription(item.description);
     setId(item.id);
+
   }
 
   return (
@@ -77,6 +86,7 @@ function App() {
               onChange={(event) => setTitle(event.target.value)}
               placeholder="Titulo"
             />
+            {title == "" ? <small>Campo obrigatório</small> : ""}
             <br />
             <br />
             <select
@@ -115,23 +125,39 @@ function App() {
           </form>
         </div>
       </div>
-      <div className="myTasks">
+      <div className="container_tasks">
         <div className="container_spans">
           <h3 className="first-line">Minhas tarefas</h3>
-          <span>Total: {todoList.length} tarefas</span>
+          <span>
+            Total:{" "}
+            {todoList.length == 1
+              ? todoList.length + " tarefa"
+              : todoList.length + " tarefas"}
+          </span>
         </div>
         {todoList.length > 0 ? (
-          <div className="container_tasks">
-            
+          <div className="container_task">
             <ul>
               {todoList.map((item) => (
                 <li key={item.id}>
-                  <p>{item.title}</p>
-                  <p>{item.category}</p>
-                  <p>{item.date}</p>
-                  <p>{item.description}</p>
-                  <button onClick={() => deleteTask(item.id)}>Apagar</button>
-                  <button onClick={() => fillFields(item)}>Editar</button>
+                  <div className="container_border">
+                    <div className="container_title_date">
+                      <p className="title">{item.title}</p>
+                      <p>{converteData(item.date)}</p>
+                    </div>
+                    <p>{item.category}</p>
+                    <div className="container_buttons_tasks">
+                      <p>{item.description}</p>
+                      <div className="container_buttons">
+                        <button onClick={() => fillFields(item)}>
+                          <img src="https://cdn-icons-png.flaticon.com/512/6492/6492748.png"></img>
+                        </button>
+                        <button onClick={() => deleteTask(item.id)}>
+                          <img src="https://cdn-icons-png.flaticon.com/512/3363/3363974.png"></img>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </li>
               ))}
             </ul>
